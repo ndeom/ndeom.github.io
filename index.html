@@ -132,10 +132,11 @@
       var baseBookmarlet = "javascript:void%20function(){(function(a){%22https://www.register2park.com/register%22!==window.location.href%26%26confirm(%22Navigate%20to%20https://www.register2park.com/register%3F%20You%20will%20need%20to%20use%20the%20bookmarklet%20again%20to%20continue.%22)%26%26(window.location.href=%22https://www.register2park.com/register%22);var%20b=document,c=b.createElement(%22body%22),d=b.createElement(%22iframe%22);timeIncrement=500,d.onload=function(){var%20c=this.contentWindow,e=c.document;history.replaceState({},b.title=e.title,c.location.href),a(c,e)},b.body.parentNode.replaceChild(c,b.body),c.parentNode.style.cssText=c.style.cssText=(d.style.cssText=%22width:100%25;height:100%25;margin:0;padding:0;border:0;%22)+%22overflow:hidden;%22,c.appendChild(d).contentWindow.location.replace(b.URL)})(function(a,b){(propertyName=b.getElementById(%22propertyName%22))%3F(setTimeout(()=%3E{propertyName.value=%22St.%20John's%20West%22},timeIncrement),setTimeout(()=%3E{b.getElementById(%22confirmProperty%22).click()},2*timeIncrement),setTimeout(()=%3E{b.querySelector(%22button[data-property-id=\%2222343\%22]%22).click()},3*timeIncrement)):(vistorButton=b.getElementById(%22registrationTypeVisitor%22))%26%26(setTimeout(()=%3E{vistorButton.click()},timeIncrement),setTimeout(()=%3E{b.getElementById(%22accessCode%22).value=%225343%22},2*timeIncrement),setTimeout(()=%3E{b.getElementById(%22propertyPassword%22).click()},3*timeIncrement),setTimeout(()=%3E{var%20a=b.getElementById(%22vehicleApt%22).value=%222215%22;console.log(%22got%20apt%20input:%20%22+a),b.getElementById(%22vehicleMake%22).value=%22VEHICLE_MAKE%22,b.getElementById(%22vehicleModel%22).value=%22VEHICLE_MODEL%22,b.getElementById(%22vehicleLicensePlate%22).value=%22LICENCE_PLATE%22,b.getElementById(%22vehicleLicensePlateConfirm%22).value=%22LICENCE_PLATE%22},4*timeIncrement),setTimeout(()=%3E{confirm(%22Okay%20to%20submit%3F%22)%26%26b.getElementById(%22vehicleInformation%22).click()},5*timeIncrement))})}();";
       
       var vehicleMake = document.getElementById("vehicle-make").value;
-      console.log("vehicle make: " + vehicleMake);
       var newBookmarlet = baseBookmarlet.replace("VEHICLE_MAKE", document.getElementById("vehicle-make").value);
-      newBookmarlet = baseBookmarlet.replace("VEHICLE_MODEL", document.getElementById("vehicle-model").value);
-      newBookmarlet = baseBookmarlet.replace("LICENCE_PLATE", document.getElementById("licence-plate").value);
+      newBookmarlet = newBookmarlet.replace("VEHICLE_MODEL", document.getElementById("vehicle-model").value);
+      var licencePlate = document.getElementById("licence-plate").value;
+      newBookmarlet = newBookmarlet.replace("LICENCE_PLATE", licencePlate);
+      newBookmarlet = newBookmarlet.replace("LICENCE_PLATE", licencePlate);
       document.querySelector('.output-code code').textContent = newBookmarlet;
       document.querySelector('.output').style.display = 'block';
 
