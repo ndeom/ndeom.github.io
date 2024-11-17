@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+    }
+    form {
+   
+      text-align: center;
+    }
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+    input[type="text"] {
+      width: 200px;
+      height: 30px;
+      margin-bottom: 20px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    input[type="submit"] {
+      width: 100px;
+      height: 30px;
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-bottom: 20px;
+    }
+    .output {
+        background-color: #f7f7f7;
+        border: 1px solid #ddd;
+        border-radius: 3px;
+        padding: 10px;
+        margin-bottom: 20px;
+    }
+
+    .output-header {
+        background-color: #f0f0f0;
+        border-bottom: 1px solid #ddd;
+        padding: 5px 10px;
+        text-align: right;
+    }
+
+    .copy-button {
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 3px;
+        padding: 5px 10px;
+        cursor: pointer;
+    }
+
+    .output-code {
+        padding: 10px;
+        font-size: 14px;
+        font-family: monospace;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        max-width: 350px;
+        overflow: hidden;
+    }
+
+    .output-code code {
+        font-size: 14px;
+        font-family: monospace;
+    }
+
+    .smiley {
+      height: 20%;
+      position: absolute;
+      transition: opacity 1s ease-in-out;
+      opacity: 0;
+      z-index: -1;
+    }
+
+    .smiley.show {
+      opacity: 1;
+    }
+
+    #submit-smiley {
+      margin-top: 15%;
+      left: 10%;
+    }
+
+    #angy-smiley {
+      margin-top: 50%;
+      left: 30px;
+    } 
+
+    #thumbsup-smiley {
+      margin-top: 50%;
+      left: 30px;
+    }
+  </style>
+</head>
+<body>
+  <img class="smiley" id="submit-smiley" src="static/submit.webp">
+  <img class="smiley" id="angy-smiley" src="static/angy.jpg">
+  <img class="smiley" id="thumbsup-smiley" src="static/thumbsup.jpg">
+  <form>
+    <h1>Mary's Parking Form 🌝</h1>
+    <label for="vehicle-make">Vehicle Make:</label>
+    <input type="text" id="vehicle-make" name="vehicle-make"><br>
+    <label for="vehicle-model">Vehicle Model:</label>
+    <input type="text" id="vehicle-model" name="vehicle-model"><br>
+    <label for="licence-plate">Licence Plate:</label>
+    <input type="text" id="licence-plate" name="licence-plate"><br>
+    <input id="submit" type="submit" value="Submit">
+    <div class="output" style="display:none">
+        <div class="output-header">
+            <button id="copy-button" onclick="copyToClipboard()">Copy</button>
+        </div>
+        <pre class="output-code"><code>CONTENT_HERE</code></pre>
+    </div>
+  </form>
+  <script>
+    document.querySelector('form').addEventListener('submit', function(event) {
+      event.preventDefault();
+      var baseBookmarlet = "javascript:void%20function(){(function(a){%22https://www.register2park.com/register%22!==window.location.href%26%26confirm(%22Navigate%20to%20https://www.register2park.com/register%3F%20You%20will%20need%20to%20use%20the%20bookmarklet%20again%20to%20continue.%22)%26%26(window.location.href=%22https://www.register2park.com/register%22);var%20b=document,c=b.createElement(%22body%22),d=b.createElement(%22iframe%22);timeIncrement=500,d.onload=function(){var%20c=this.contentWindow,e=c.document;history.replaceState({},b.title=e.title,c.location.href),a(c,e)},b.body.parentNode.replaceChild(c,b.body),c.parentNode.style.cssText=c.style.cssText=(d.style.cssText=%22width:100%25;height:100%25;margin:0;padding:0;border:0;%22)+%22overflow:hidden;%22,c.appendChild(d).contentWindow.location.replace(b.URL)})(function(a,b){(propertyName=b.getElementById(%22propertyName%22))%3F(setTimeout(()=%3E{propertyName.value=%22St.%20John's%20West%22},timeIncrement),setTimeout(()=%3E{b.getElementById(%22confirmProperty%22).click()},2*timeIncrement),setTimeout(()=%3E{b.querySelector(%22button[data-property-id=\%2222343\%22]%22).click()},3*timeIncrement)):(vistorButton=b.getElementById(%22registrationTypeVisitor%22))%26%26(setTimeout(()=%3E{vistorButton.click()},timeIncrement),setTimeout(()=%3E{b.getElementById(%22accessCode%22).value=%225343%22},2*timeIncrement),setTimeout(()=%3E{b.getElementById(%22propertyPassword%22).click()},3*timeIncrement),setTimeout(()=%3E{var%20a=b.getElementById(%22vehicleApt%22).value=%222215%22;console.log(%22got%20apt%20input:%20%22+a),b.getElementById(%22vehicleMake%22).value=%22VEHICLE_MAKE%22,b.getElementById(%22vehicleModel%22).value=%22VEHICLE_MODEL%22,b.getElementById(%22vehicleLicensePlate%22).value=%22LICENCE_PLATE%22,b.getElementById(%22vehicleLicensePlateConfirm%22).value=%22LICENCE_PLATE%22},4*timeIncrement),setTimeout(()=%3E{confirm(%22Okay%20to%20submit%3F%22)%26%26b.getElementById(%22vehicleInformation%22).click()},5*timeIncrement))})}();";
+      
+      var vehicleMake = document.getElementById("vehicle-make").value;
+      console.log("vehicle make: " + vehicleMake);
+      var newBookmarlet = baseBookmarlet.replace("VEHICLE_MAKE", document.getElementById("vehicle-make").value);
+      newBookmarlet = baseBookmarlet.replace("VEHICLE_MODEL", document.getElementById("vehicle-model").value);
+      newBookmarlet = baseBookmarlet.replace("LICENCE_PLATE", document.getElementById("licence-plate").value);
+      document.querySelector('.output-code code').textContent = newBookmarlet;
+      document.querySelector('.output').style.display = 'block';
+
+      // show angy smiley
+      document.getElementById("angy-smiley").classList.add("show");
+    });
+    
+    // handle mouseover and mouseout for smileys
+    document.getElementById("submit").addEventListener("mouseover", () => {
+      // document.getElementsByClassName("smiley").classList.add("show");
+      document.getElementById("submit-smiley").classList.add("show");
+    });
+    document.getElementById("submit").addEventListener("mouseout", () => {
+      document.getElementById("submit-smiley").classList.remove("show");
+    });
+    
+
+    function copyToClipboard() {
+      var range = document.createRange();
+      range.selectNode(document.querySelector('.output-code'));
+      window.getSelection().removeAllRanges();
+      window.getSelection().addRange(range);
+      document.execCommand('copy');
+      window.getSelection().removeAllRanges();
+
+      // show thumbsup smiley
+      document.getElementById("angy-smiley").classList.remove("show");
+      document.getElementById("thumbsup-smiley").classList.add("show");
+    }
+  </script>
+</body>
+</html>
